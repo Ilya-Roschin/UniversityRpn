@@ -1,4 +1,15 @@
 package com.university.java.app.exam;
 
-public class Math {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class Math extends Exam {
+
+    private String examName;
 }

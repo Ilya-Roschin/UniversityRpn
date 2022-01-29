@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class English extends Exam {
+public class Physics extends Exam {
 
     private String examName;
 }
