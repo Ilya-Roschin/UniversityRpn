@@ -1,8 +1,13 @@
 package com.university.java.app.model;
 
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
 public class User {
 
-    private String userName;
+    protected String userName;
 
-    private String password;
+    protected String password;
 }

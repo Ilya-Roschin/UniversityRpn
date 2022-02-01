@@ -9,4 +9,5 @@ import lombok.*;
 public class Exam {
 
     private String examName = "Exam";
+
 }
