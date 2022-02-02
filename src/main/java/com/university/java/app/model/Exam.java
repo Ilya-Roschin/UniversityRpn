@@ -1,21 +1,16 @@
 package com.university.java.app.model;
 
+
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Setter
-public class Result {
+public class Exam {
 
-    private Exam exam;
-
-    private double markScore;
-
-    private String studentUserName;
+    private String examName;
 }
