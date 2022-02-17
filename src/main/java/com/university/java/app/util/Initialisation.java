@@ -1,4 +1,4 @@
-package com.university.java.app;
+package com.university.java.app.util;
 
 import com.university.java.app.model.Exam;
 import com.university.java.app.model.Faculty;

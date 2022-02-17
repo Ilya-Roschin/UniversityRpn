@@ -1,6 +1,5 @@
 package com.university.java.app.controller;
 
-import com.university.java.app.repository.StudentRepository;
 import com.university.java.app.sign.StudentSign;
 import com.university.java.app.sign.TeacherSing;
 
@@ -17,7 +16,6 @@ public class Menu {
         System.out.println("Menu \n" +
                 "1. Student \n" +
                 "2. Teacher \n");
-
     }
 
     public void mainController() {

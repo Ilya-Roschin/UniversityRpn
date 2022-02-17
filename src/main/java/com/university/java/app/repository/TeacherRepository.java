@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class TeacherRepository {
 
     private static final List<Teacher> TEACHERS = new ArrayList<>();
-    private static final Scanner SCANNER = new Scanner(System.in);
 
     public void addToRepository(Teacher teacher) {
         TEACHERS.add(teacher);

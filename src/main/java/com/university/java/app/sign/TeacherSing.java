@@ -17,7 +17,6 @@ public class TeacherSing {
     public boolean sign() {
         System.out.println("enter userName");
         String userName = SCANNER.nextLine();
-        // TODO: 01.02.2022 обернуть в Optional
         User foundedUser = TEACHER_REPOSITORY.findByName(userName);
         System.out.println("enter password");
         String password = SCANNER.nextLine();

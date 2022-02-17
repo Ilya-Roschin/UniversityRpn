@@ -1,6 +1,7 @@
 package com.university.java.app;
 
 import com.university.java.app.controller.Menu;
+import com.university.java.app.util.Initialisation;
 
 public class Main {
 

@@ -5,7 +5,6 @@ import com.university.java.app.model.Faculty;
 import com.university.java.app.model.Result;
 import com.university.java.app.model.Student;
 import com.university.java.app.repository.FacultyRepository;
-import com.university.java.app.repository.ResultRepository;
 import com.university.java.app.repository.StudentRepository;
 import com.university.java.app.status.StudentStatus;
 
@@ -19,7 +18,6 @@ public class TeacherService {
 
     private static final FacultyRepository FACULTY_REPOSITORY = new FacultyRepository();
     private static final StudentRepository STUDENT_REPOSITORY = new StudentRepository();
-    private static final ResultRepository RESULT_REPOSITORY = new ResultRepository();
     private static final TeacherService TEACHER_SERVICE = new TeacherService();
     private static final Scanner SCANNER = new Scanner(System.in);
 
@@ -34,22 +32,25 @@ public class TeacherService {
         STUDENT_REPOSITORY.findAll().forEach(student -> {
             System.out.print("student name: " + student.getUserName());
             boolean isMarkPresent = false;
+
+            /**
+             * этот блок используется для проверки в безопасном режиме
+             * averageMark на null т.к. isPresent кидает
+             * null pointer exception
+             */
+
             try {
                 student.getAverageMark().isPresent();
                 isMarkPresent = true;
             } catch (NullPointerException e) {
 
             }
-
             if(isMarkPresent) {
-                System.out.println("mark: " + student.getAverageMark());
+                System.out.println("mark: " + student.getAverageMark().get());
             } else {
                 System.out.println();
             }
-
         });
-
-
     }
 
     public void findAllWaitingStudents() {
@@ -67,7 +68,6 @@ public class TeacherService {
 
         List<Result> results = chosenStudent.getResults();
         List<Result> updatedResults = new ArrayList<>();
-        // List<Result> results = RESULT_REPOSITORY.findAllByStudentName(studentName);
 
         for (Result result : results) {
             System.out.println("enter " + studentName

@@ -33,8 +33,6 @@ public class StudentController {
                 MENU.readMainMenu();
                 MENU.mainController();
                 break;
-            case 5:
-                // TODO: 15.02.2022 get mark
             default:
                 System.out.println("Incorrect input!!! Try again");
         }

@@ -20,10 +20,13 @@ public class StudentService {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public void findAllOpenFaculty() {
-        FACULTY_REPOSITORY.findAll().forEach(faculty ->
-                System.out.println("faculty: " + faculty.getFacultyName()
-                        + " passingScore: " + faculty.getPassingScore()
-                        + " Exams: ")
+        FACULTY_REPOSITORY.findAll().forEach(faculty -> {
+                    System.out.print("faculty: " + faculty.getFacultyName()
+                            + " passingScore: " + faculty.getPassingScore()
+                            + " Exams: ");
+                    faculty.getExams().forEach(exam -> System.out.print(exam.getExamName() + " "));
+                    System.out.println();
+                }
         );
     }
 
@@ -40,10 +43,9 @@ public class StudentService {
         }
 
         Student studentToUpdate = STUDENT_REPOSITORY.findByName(STUDENT_SIGN.getLastUserName());
-        Student updatedStudent = studentToUpdate;
-        updatedStudent.setStudentStatus(StudentStatus.WaitingForAResponse);
-        updatedStudent.setSelectedForAdmissionFaculty(faculty);
-        STUDENT_REPOSITORY.updateStudent(studentToUpdate, updatedStudent);
+        studentToUpdate.setStudentStatus(StudentStatus.WaitingForAResponse);
+        studentToUpdate.setSelectedForAdmissionFaculty(faculty);
+        STUDENT_REPOSITORY.updateStudent(studentToUpdate, studentToUpdate);
     }
 
     public void userEnrollStatus() {
@@ -51,7 +53,7 @@ public class StudentService {
         if (studentStatus == StudentStatus.Enlisted) {
             System.out.println("congratulations on your admission to the faculty of" +
                     STUDENT_REPOSITORY.findByName(STUDENT_SIGN.getLastUserName()).getFaculty());
-        } else if(studentStatus == StudentStatus.WaitingForAResponse ) {
+        } else if (studentStatus == StudentStatus.WaitingForAResponse) {
             System.out.println("wait for an answer");
         } else {
             System.out.println("faculty not selected ");
@@ -68,10 +70,10 @@ public class StudentService {
                 System.out.println("Exam: " + result.getExam().getExamName() + " Mark: " + result.getMarkScore());
             }
 
-        } else if (studentStatus == StudentStatus.WaitingForAResponse){
+        } else if (studentStatus == StudentStatus.WaitingForAResponse) {
             System.out.println("WAIT RESPONSE !!!!");
         } else {
-            System.out.println("IDIOOOOOOOOOOOOT CHOOSE FACULTY");
+            System.out.println("CHOOSE FACULTY");
         }
     }
 }

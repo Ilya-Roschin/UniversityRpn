@@ -2,24 +2,27 @@ package com.university.java.app.model;
 
 import com.university.java.app.status.StudentStatus;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@EqualsAndHashCode(callSuper = true)
 @Getter
 @Setter
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Student extends User {
 
     private StudentStatus studentStatus;
 
-    private List<Result> results;
+    private List<Result> results = new ArrayList<>();
 
     private Faculty faculty;
 
