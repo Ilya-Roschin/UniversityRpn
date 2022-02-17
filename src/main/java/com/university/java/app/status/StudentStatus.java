@@ -4,5 +4,6 @@ public enum StudentStatus {
 
     WaitingForAResponse,
     Enlisted,
-    Sleep;
+    Sleep,
+    GetMark;
 }

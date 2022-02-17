@@ -18,4 +18,9 @@ public class Result {
     private double markScore;
 
     private String studentUserName;
+
+    public Result(Exam exam, double markScore) {
+        this.exam = exam;
+        this.markScore = markScore;
+    }
 }

@@ -14,7 +14,7 @@ public class Menu {
 
     public void readMainMenu() {
         // TODO: 01.02.2022 constant
-        System.out.println("Menu \n " +
+        System.out.println("Menu \n" +
                 "1. Student \n" +
                 "2. Teacher \n");
 
@@ -28,6 +28,7 @@ public class Menu {
                 break;
             case 2:
                 readTeacherMenu();
+                teacherController();
                 break;
             default:
                 System.out.println("Incorrect input!!!");
@@ -38,7 +39,7 @@ public class Menu {
 
     public void readStudentMenu() {
         // TODO: 01.02.2022 constant
-        System.out.println("Student Menu \n " +
+        System.out.println("Student Menu \n" +
                 "1. sign \n" +
                 "2. reg \n" +
                 "3. back");
@@ -71,7 +72,7 @@ public class Menu {
 
     public void readTeacherMenu() {
         // TODO: 01.02.2022 constant
-        System.out.println("Teacher Menu \n " +
+        System.out.println("Teacher Menu \n" +
                 "1. sign \n" +
                 "2. reg \n" +
                 "3. back");

@@ -23,4 +23,5 @@ public class ResultRepository {
                 .filter(result -> result.getStudentUserName().equals(studentName))
                 .collect(Collectors.toList());
     }
+
 }
