@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
@@ -13,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class Faculty {
+public class Faculty implements Serializable {
 
     private String FacultyName;
 

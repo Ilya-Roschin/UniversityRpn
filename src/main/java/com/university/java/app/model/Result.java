@@ -6,12 +6,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class Result {
+public class Result implements Serializable {
 
     private Exam exam;
 
