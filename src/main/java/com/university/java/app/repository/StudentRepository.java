@@ -1,42 +1,35 @@
 package com.university.java.app.repository;
 
+import com.university.java.app.file.fileReader.StudentFileReader;
 import com.university.java.app.model.Student;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class StudentRepository {
 
-    private static final List<Student> STUDENTS = new ArrayList<>();
-    private static final Scanner SCANNER = new Scanner(System.in);
+    private static final StudentFileReader STUDENT_FILE_READER = new StudentFileReader();
 
     public void addToRepository(Student student) {
-        STUDENTS.add(student);
+        STUDENT_FILE_READER.addToFile(student);
     }
 
     public Student findByName(String name) {
         // TODO: 01.02.2022 create new exception
-        return STUDENTS.stream()
+        return STUDENT_FILE_READER.findAll().stream()
                 .filter(u -> u.getUserName().equals(name))
                 .findFirst()
                 .orElseThrow(RuntimeException::new);
     }
 
     public List<Student> findAll() {
-        return STUDENTS;
+        return STUDENT_FILE_READER.findAll();
     }
 
-    public boolean DeleteStudentByName(String username) {
-        return STUDENTS.remove(findByName(username));
-    }
-
-    public boolean DeleteUser(Student student) {
-        return STUDENTS.remove(student);
+    public void DeleteUser(Student student) {
+       STUDENT_FILE_READER.deleteStudent(student);
     }
 
     public void updateStudent(Student findStudent, Student updatedStudent) {
-        DeleteUser(findStudent);
-        addToRepository(updatedStudent);
+        STUDENT_FILE_READER.update(findStudent, updatedStudent);
     }
 }

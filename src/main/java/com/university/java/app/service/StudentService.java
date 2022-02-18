@@ -35,17 +35,18 @@ public class StudentService {
         String facultyName = SCANNER.nextLine();
         Faculty faculty = FACULTY_REPOSITORY.findByName(facultyName);
 
-
         for (Exam exam : faculty.getExams()) {
             Result result = new Result();
             result.setExam(exam);
             result.setStudentUserName(STUDENT_SIGN.getLastUserName());
         }
 
-        Student studentToUpdate = STUDENT_REPOSITORY.findByName(STUDENT_SIGN.getLastUserName());
+        Student student = STUDENT_REPOSITORY.findByName(STUDENT_SIGN.getLastUserName());
+        Student studentToUpdate = student;
+
         studentToUpdate.setStudentStatus(StudentStatus.WaitingForAResponse);
         studentToUpdate.setSelectedForAdmissionFaculty(faculty);
-        STUDENT_REPOSITORY.updateStudent(studentToUpdate, studentToUpdate);
+        STUDENT_REPOSITORY.updateStudent(student, studentToUpdate);
     }
 
     public void userEnrollStatus() {

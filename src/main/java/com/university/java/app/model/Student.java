@@ -19,7 +19,7 @@ import java.util.Optional;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Student extends User implements Serializable {
+public class Student extends User implements Serializable, Cloneable {
 
     private StudentStatus studentStatus;
 
@@ -41,4 +41,5 @@ public class Student extends User implements Serializable {
         this.studentStatus = studentStatus;
         this.results = marks;
     }
+
 }
