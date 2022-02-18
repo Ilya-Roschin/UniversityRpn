@@ -29,7 +29,7 @@ public class StudentRepository {
        STUDENT_FILE_READER.deleteStudent(student);
     }
 
-    public void updateStudent(Student findStudent, Student updatedStudent) {
-        STUDENT_FILE_READER.update(findStudent, updatedStudent);
+    public void updateStudent(String studentName, Student updatedStudent) {
+        STUDENT_FILE_READER.update(studentName, updatedStudent);
     }
 }

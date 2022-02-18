@@ -7,8 +7,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        Initialisation initialisation = new Initialisation();
-//        initialisation.init();
+//       Initialisation initialisation = new Initialisation();
+//       initialisation.init();
         Menu menu = new Menu();
         menu.readMainMenu();
         menu.mainController();

@@ -63,11 +63,11 @@ public class StudentFileReader implements Serializable {
         }
     }
 
-    public void update(Student student, Student updatedStudent) {
+    public void update(String name, Student updatedStudent) {
         List<Student> students = findAll();
         for (int i = 0; i < students.size(); i++) {
-            if (Objects.equals(students.get(i), student)) {
-                students.remove(student);
+            if (Objects.equals(students.get(i).getUserName(), name)) {
+                students.removeIf(s -> Objects.equals(s.getUserName(), name));
                 students.add(updatedStudent);
                 System.out.println(updatedStudent);
             }

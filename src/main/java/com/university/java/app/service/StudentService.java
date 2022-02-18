@@ -42,11 +42,10 @@ public class StudentService {
         }
 
         Student student = STUDENT_REPOSITORY.findByName(STUDENT_SIGN.getLastUserName());
-        Student studentToUpdate = student;
-
+        Student studentToUpdate = new Student(student.getUserName(), student.getPassword(), student.getStudentStatus());
         studentToUpdate.setStudentStatus(StudentStatus.WaitingForAResponse);
         studentToUpdate.setSelectedForAdmissionFaculty(faculty);
-        STUDENT_REPOSITORY.updateStudent(student, studentToUpdate);
+        STUDENT_REPOSITORY.updateStudent(student.getUserName(), studentToUpdate);
     }
 
     public void userEnrollStatus() {

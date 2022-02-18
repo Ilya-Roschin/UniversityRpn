@@ -1,6 +1,8 @@
 package com.university.java.app.status;
 
-public enum StudentStatus {
+import java.io.Serializable;
+
+public enum StudentStatus implements Serializable {
 
     WaitingForAResponse,
     Enlisted,

@@ -10,6 +10,7 @@ import com.university.java.app.status.StudentStatus;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -40,13 +41,14 @@ public class TeacherService {
              */
 
             try {
-                student.getAverageMark().isPresent();
-                isMarkPresent = true;
+                if (!Objects.equals(student.getAverageMark(), null)) {
+                    isMarkPresent = true;
+                }
             } catch (NullPointerException e) {
 
             }
-            if(isMarkPresent) {
-                System.out.println("mark: " + student.getAverageMark().get());
+            if (isMarkPresent) {
+                System.out.println("mark: " + student.getAverageMark());
             } else {
                 System.out.println();
             }
@@ -76,15 +78,18 @@ public class TeacherService {
             result.setMarkScore(mark);
             updatedResults.add(result);
         }
+
         chosenStudent.setResults(updatedResults);
 
         TEACHER_SERVICE.addAverageMark(chosenStudent);
         chosenStudent.setStudentStatus(StudentStatus.GetMark);
-
+        chosenStudent.setUserName(studentName);
 
         if (TEACHER_SERVICE.isStudentEnterTheFaculty(chosenStudent)) {
-            TEACHER_SERVICE.autoUpdateStatus(chosenStudent);
+            chosenStudent.setFaculty(chosenStudent.getSelectedForAdmissionFaculty());
+            chosenStudent.setStudentStatus(StudentStatus.Enlisted);
         }
+        STUDENT_REPOSITORY.updateStudent(studentName, chosenStudent);
     }
 
     public void addAverageMark(Student student) {
@@ -98,19 +103,18 @@ public class TeacherService {
         for (int i = 0; i < results.size(); i++) {
             markSum += results.get(i);
         }
-        student.setAverageMark(Optional.of(markSum / results.size()));
+        student.setAverageMark((markSum / results.size()));
         student.setStudentStatus(StudentStatus.GetMark);
     }
 
     public boolean isStudentEnterTheFaculty(Student student) {
-        return student.getAverageMark().orElseThrow(RuntimeException::new) >=
-                student.getSelectedForAdmissionFaculty().getPassingScore();
+
+        if(student.getAverageMark() >= student.getSelectedForAdmissionFaculty().getPassingScore()) {
+            return true;
+        }
+            return false;
     }
 
-    public void autoUpdateStatus(Student student) {
-        student.setFaculty(student.getSelectedForAdmissionFaculty());
-        student.setStudentStatus(StudentStatus.Enlisted);
-    }
 
     public void addResultsToStudent(Student student) {
         if (student.getStudentStatus() == StudentStatus.WaitingForAResponse) {

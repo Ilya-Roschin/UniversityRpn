@@ -29,7 +29,7 @@ public class Student extends User implements Serializable, Cloneable {
 
     private Faculty selectedForAdmissionFaculty;
 
-    private Optional<Double> averageMark;
+    private Double averageMark;
 
     public Student(String userName, String password, StudentStatus studentStatus) {
         super(userName, password);
@@ -42,4 +42,14 @@ public class Student extends User implements Serializable, Cloneable {
         this.results = marks;
     }
 
+    public Student(String userName, String password, StudentStatus studentStatus, Faculty selectedForAdmissionFaculty) {
+        super(userName, password);
+        this.studentStatus = studentStatus;
+        this.selectedForAdmissionFaculty = selectedForAdmissionFaculty;
+    }
+
+    public Student(StudentStatus studentStatus, Faculty selectedForAdmissionFaculty) {
+        this.studentStatus = studentStatus;
+        this.selectedForAdmissionFaculty = selectedForAdmissionFaculty;
+    }
 }
