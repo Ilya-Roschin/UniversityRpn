@@ -1,5 +1,6 @@
 package com.university.java.app.file.fileReader;
 
+import com.university.java.app.exception.IncorrectInputException;
 import com.university.java.app.file.lists.StudentList;
 import com.university.java.app.model.Student;
 
@@ -28,7 +29,7 @@ public class StudentFileReader implements Serializable {
         }
     }
 
-    public List<Student> findAll() {
+    public List<Student> findAll() throws IncorrectInputException {
         FileInputStream fileInputStream = null;
         List<Student> students = new ArrayList<>();
         try {
@@ -40,12 +41,13 @@ public class StudentFileReader implements Serializable {
                 objectInputStream.close();
             }
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("io exception");
+            throw new IncorrectInputException("IOException", e);
         }
         return students;
     }
 
-    public void addToFile(Student student) {
+    public void addToFile(Student student) throws IncorrectInputException{
         FileOutputStream outputStream = null;
         List<Student> students = findAll();
         try {
@@ -63,7 +65,7 @@ public class StudentFileReader implements Serializable {
         }
     }
 
-    public void update(String name, Student updatedStudent) {
+    public void update(String name, Student updatedStudent) throws IncorrectInputException {
         List<Student> students = findAll();
         for (int i = 0; i < students.size(); i++) {
             if (Objects.equals(students.get(i).getUserName(), name)) {
@@ -80,7 +82,7 @@ public class StudentFileReader implements Serializable {
         }
     }
 
-    public void deleteStudent(Student student) {
+    public void deleteStudent(Student student) throws IncorrectInputException{
         List<Student> students = findAll();
         for (int i = 0; i < students.size(); i++) {
             if (Objects.equals(students.get(i), student)) {

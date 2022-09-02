@@ -1,5 +1,6 @@
 package com.university.java.app.controller;
 
+import com.university.java.app.exception.IncorrectInputException;
 import com.university.java.app.service.TeacherService;
 
 import java.util.Scanner;
@@ -19,7 +20,7 @@ public class TeacherController {
                 "5. back");
     }
 
-    public void mainController() {
+    public void mainController() throws IncorrectInputException {
         switch (choose()) {
             case 1:
                 TEACHER_SERVICE.findAllFaculties();

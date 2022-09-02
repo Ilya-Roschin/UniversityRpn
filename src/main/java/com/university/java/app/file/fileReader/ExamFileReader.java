@@ -1,16 +1,10 @@
 package com.university.java.app.file.fileReader;
 
+import com.university.java.app.exception.IncorrectInputException;
 import com.university.java.app.file.lists.ExamList;
-import com.university.java.app.file.lists.StudentList;
 import com.university.java.app.model.Exam;
-import com.university.java.app.model.Student;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +13,13 @@ public class ExamFileReader {
     private static final String PATH = "src/main/java/com/university/java/app/file/data/exams.bat";
     private static final File FILE = new File(PATH);
 
-    public void clearFile() {
+    public void clearFile() throws IncorrectInputException {
         try {
             FILE.delete();
             FILE.createNewFile();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("io exception");
+            throw new IncorrectInputException("IOException", e);
         }
     }
 

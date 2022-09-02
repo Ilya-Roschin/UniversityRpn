@@ -1,16 +1,10 @@
 package com.university.java.app.file.fileReader;
 
+import com.university.java.app.exception.IncorrectInputException;
 import com.university.java.app.file.lists.FacultyList;
-import com.university.java.app.file.lists.StudentList;
 import com.university.java.app.model.Faculty;
-import com.university.java.app.model.Student;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,16 +13,17 @@ public class FacultiesFileReader {
     private static final String PATH = "src/main/java/com/university/java/app/file/data/faculties.bat";
     private static final File FILE = new File(PATH);
 
-    public void clearFile() {
+    public void clearFile() throws IncorrectInputException{
         try {
             FILE.delete();
             FILE.createNewFile();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("io exception");
+            throw new IncorrectInputException("IOException", e);
         }
     }
 
-    public List<Faculty> findAll() {
+    public List<Faculty> findAll() throws IncorrectInputException{
         FileInputStream fileInputStream = null;
         List<Faculty> faculties = new ArrayList<>();
         try {
@@ -40,12 +35,13 @@ public class FacultiesFileReader {
                 objectInputStream.close();
             }
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("exception");
+            throw new IncorrectInputException("IOException", e);
         }
         return faculties;
     }
 
-    public void addToFile(Faculty faculty) {
+    public void addToFile(Faculty faculty) throws IncorrectInputException {
         FileOutputStream outputStream = null;
         List<Faculty> faculties = findAll();
         try {

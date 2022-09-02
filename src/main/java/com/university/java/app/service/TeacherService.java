@@ -1,5 +1,6 @@
 package com.university.java.app.service;
 
+import com.university.java.app.exception.IncorrectInputException;
 import com.university.java.app.model.Exam;
 import com.university.java.app.model.Faculty;
 import com.university.java.app.model.Result;
@@ -22,14 +23,14 @@ public class TeacherService {
     private static final TeacherService TEACHER_SERVICE = new TeacherService();
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public void findAllFaculties() {
+    public void findAllFaculties() throws IncorrectInputException {
         FACULTY_REPOSITORY.findAll().forEach(faculty ->
                 System.out.println("faculty: " + faculty.getFacultyName()
                         + "passingScore: " + faculty.getPassingScore()
                         + "Exams: " + faculty.getExams()));
     }
 
-    public void findAllStudents() {
+    public void findAllStudents() throws IncorrectInputException{
         STUDENT_REPOSITORY.findAll().forEach(student -> {
             System.out.print("student name: " + student.getUserName());
             boolean isMarkPresent = false;
@@ -55,13 +56,13 @@ public class TeacherService {
         });
     }
 
-    public void findAllWaitingStudents() {
+    public void findAllWaitingStudents() throws IncorrectInputException{
         STUDENT_REPOSITORY.findAll().stream()
                 .filter(s -> s.getStudentStatus() == StudentStatus.WaitingForAResponse)
                 .forEach(student -> System.out.println("student name: " + student.getUserName()));
     }
 
-    public void addMarkToStudent() {
+    public void addMarkToStudent() throws IncorrectInputException{
         System.out.println("enter Student name");
         String studentName = SCANNER.nextLine();
 

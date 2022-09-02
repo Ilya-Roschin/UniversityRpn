@@ -1,5 +1,6 @@
 package com.university.java.app.sign;
 
+import com.university.java.app.exception.IncorrectInputException;
 import com.university.java.app.model.Student;
 import com.university.java.app.model.User;
 import com.university.java.app.repository.StudentRepository;
@@ -13,7 +14,7 @@ public class StudentSign {
     private static final Scanner SCANNER = new Scanner(System.in);
     private static String lastUserName;
 
-    public boolean sign() {
+    public boolean sign() throws IncorrectInputException {
         System.out.println("enter userName");
         String userName = SCANNER.nextLine();
         // TODO: 01.02.2022 обернуть в Optional
@@ -30,7 +31,7 @@ public class StudentSign {
         return false;
     }
 
-    public void register() {
+    public void register() throws IncorrectInputException{
         System.out.println("enter userName");
         String userName = SCANNER.nextLine();
         System.out.println("enter password");

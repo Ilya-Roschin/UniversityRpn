@@ -1,5 +1,6 @@
 package com.university.java.app.service;
 
+import com.university.java.app.exception.IncorrectInputException;
 import com.university.java.app.model.Exam;
 import com.university.java.app.model.Faculty;
 import com.university.java.app.model.Result;
@@ -19,7 +20,7 @@ public class StudentService {
     private static final StudentRepository STUDENT_REPOSITORY = new StudentRepository();
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public void findAllOpenFaculty() {
+    public void findAllOpenFaculty() throws IncorrectInputException {
         FACULTY_REPOSITORY.findAll().forEach(faculty -> {
                     System.out.print("faculty: " + faculty.getFacultyName()
                             + " passingScore: " + faculty.getPassingScore()
@@ -30,7 +31,7 @@ public class StudentService {
         );
     }
 
-    public void enrolFaculty() {
+    public void enrolFaculty() throws IncorrectInputException{
         System.out.println("Enter Faculty name");
         String facultyName = SCANNER.nextLine();
         Faculty faculty = FACULTY_REPOSITORY.findByName(facultyName);
@@ -48,7 +49,7 @@ public class StudentService {
         STUDENT_REPOSITORY.updateStudent(student.getUserName(), studentToUpdate);
     }
 
-    public void userEnrollStatus() {
+    public void userEnrollStatus() throws IncorrectInputException{
         StudentStatus studentStatus = STUDENT_REPOSITORY.findByName(STUDENT_SIGN.getLastUserName()).getStudentStatus();
         if (studentStatus == StudentStatus.Enlisted) {
             System.out.println("congratulations on your admission to the faculty of" +
@@ -60,7 +61,7 @@ public class StudentService {
         }
     }
 
-    public void printResults() {
+    public void printResults() throws IncorrectInputException{
         Student student = STUDENT_REPOSITORY.findByName(STUDENT_SIGN.getLastUserName());
         StudentStatus studentStatus = student.getStudentStatus();
         if (studentStatus == StudentStatus.GetMark || studentStatus == StudentStatus.Enlisted) {

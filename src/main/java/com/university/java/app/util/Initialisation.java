@@ -1,5 +1,6 @@
 package com.university.java.app.util;
 
+import com.university.java.app.exception.IncorrectInputException;
 import com.university.java.app.model.Exam;
 import com.university.java.app.model.Faculty;
 import com.university.java.app.model.Student;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class Initialisation {
 
-    public void init() {
+    public void init() throws IncorrectInputException {
 
         StudentRepository studentRepository = new StudentRepository();
         studentRepository.addToRepository(new Student("ivan","123", StudentStatus.Sleep));

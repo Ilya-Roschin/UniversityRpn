@@ -1,5 +1,6 @@
 package com.university.java.app.controller;
 
+import com.university.java.app.exception.IncorrectInputException;
 import com.university.java.app.sign.StudentSign;
 import com.university.java.app.sign.TeacherSing;
 
@@ -18,7 +19,7 @@ public class Menu {
                 "2. Teacher \n");
     }
 
-    public void mainController() {
+    public void mainController() throws IncorrectInputException{
         switch (choose()) {
             case 1:
                 readStudentMenu();
@@ -43,7 +44,7 @@ public class Menu {
                 "3. back");
     }
 
-    public void studentController() {
+    public void studentController() throws IncorrectInputException {
         switch (choose()) {
             case 1:
                 if (STUDENT_SIGN.sign()) {
@@ -76,7 +77,7 @@ public class Menu {
                 "3. back");
     }
 
-    public void teacherController() {
+    public void teacherController() throws IncorrectInputException{
         switch (choose()) {
             case 1:
                 if (TEACHER_SING.sign()) {
